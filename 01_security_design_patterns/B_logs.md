@@ -1,6 +1,7 @@
 # Logiggin and auditing in systems
 
 ## Table of contents
+
 - [Logiggin and auditing in systems](#logiggin-and-auditing-in-systems)
   - [Table of contents](#table-of-contents)
   - [Introduction](#introduction)
@@ -51,12 +52,18 @@ If logs contain user sensitive data, it should, at best, be ommited. Log record'
 
 ## Log types
 
-While all logs should follow the structured anatomy mentioned above, they generally fall into four functional categories:
+While all logs should follow the structured anatomy mentioned above, they generally fall into these functional categories:
 
-- Audit logs: Track admin actions and config changes for compliance.
-- Access logs: Show who accessed what, when, and from where—helpful for user behavior analysis.
-- Transaction logs: Used in databases and financial systems to trace query history or payment events.
-- Security Logs (WAF/Auth): Records of login attempts, firewall blocks, or suspicious API calls. These are the primary source for threat detection and incident response.
+- System Logs: Logs that record foundational system-level events, such as kernel activities and hardware errors, to help administrators monitor the overall health and stability of the operating system.
+
+- Application Logs: Generated directly by specific software applications, containing contextual information and severity levels to aid debugging errors and understand software behavior.
+
+- Security Logs: Specifically track security-focused events—such as authentication attempts, access controls and intrusion detection alerts.
+
+- Audit Logs: High-integrity evidence for compliance and forensic analysis, these logs provide tracking of user actions, data access, and system configuration changes.
+
+- Event Logs: Acting as a comprehensive timeline, these logs track state changes across the operating system, security mechanisms, and applications to provide a high-level overview.
+
 
 ## High-availability (HA) logging service
 
@@ -212,3 +219,11 @@ System using these 3 components becomes performant, cost-effective and secure.
 
 ## References
 1. **Logs Data Model** https://opentelemetry.io/docs/specs/otel/logs/data-model/
+2. **Exploring Various Log Types and Formats for Better Log Management** https://edgedelta.com/company/blog/log-types-and-formats
+3. **Graylog** https://go2docs.graylog.org/5-0/what_is_graylog/what_is_graylog.htm?tocpath=What%20Is%20Graylog%253F%7C_____0
+4. **What is log rotation** https://www.crowdstrike.com/en-us/cybersecurity-101/next-gen-siem/log-rotation/
+5. **LogRotate** https://linux.die.net/man/8/logrotate
+6. **Details of a logrotate race-condition** https://tech.feedyourhead.at/content/details-of-a-logrotate-race-condition
+7. **Docker Log Rotation Configuration Guide** https://signoz.io/blog/docker-log-rotation/
+8. **The Complete Guide to the ELK Stack** https://logz.io/learn/complete-guide-elk-stack/
+9. **ELK Stack Comprehensive Guide** https://dev.to/kaustubhyerkade/elk-stack-a-comprehensive-guide-to-installing-and-configuring-the-elk-stack-el7
