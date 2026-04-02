@@ -15,17 +15,17 @@ Generally speaking, in cybersecurity there are a few categories which classify t
 ### Hacktivists
 Threat actors driven by political, social or ideological motives. Hacktivists are not primarily motivated by money, rather by a need to publicize misdeeds of an organization, or to be a part of political or social movement. Usually targeting organizations, webites or systems to promote their belifes or statemets.
 
-For a company like *MegaTravel*, hacktivists are a realistic threat. If hacktivists are able to compromise administrative user accounts, or elevate their privilages, they could execute defacement attack. In other words they would replace legitimate pages with ther own political messaging, post data regarding their political or sociological subjects as travel data. They are highly likely to utilize DDoS (Distributed Denial of Service) attacks to exhaust backend resources and take the booking platform offline during peak seasons. This would cause financial damage to company and disrupt company's business, even tho they are not aiming to gain money at all from their acctions.
+For a company like *MegaTravel*, hacktivists are a realistic threat. If hacktivists are able to compromise administrative user accounts, or elevate their privilages, they could execute defacement attack. In other words they would replace legitimate pages with ther own political messaging, post data regarding their political or sociological ideas as travel data. They are highly likely to utilize DDoS (Distributed Denial of Service) attacks to exhaust backend resources and take the booking platform offline during peak seasons. This would cause financial damage to company and disrupt company's business, even tho they are not aiming to gain money at all from their acctions.
 
 ### State-sponsored Actors - APTs (Advanced persistant threat)
 These are government-backed entities that conduct cyber espionage, sabotage, or other offensive activities to advance their nation's interests. They often possess advanced capabilities and significant resources.
 
-It is likely that this kind of actors would indulge in espionage of high-profile pessangers (diplomats, military officals, CEOs). *MegaTravel* itselfs may not be a direct target, they could compromise smaller vendors that provide APIs for the platform itself, getting a backdoor. Even more wild is the idea of discriptiong flight services, leaving targeted individuals stranded in other countries, away from their seat of power.
+It is likely that this kind of actors would indulge in espionage of high-profile pessangers (diplomats, military officals, CEOs). *MegaTravel* itselfs may not be a direct target, they could compromise smaller vendors that provide APIs for the platform itself, getting a backdoor. Even more wild is the idea of disrupting flight services, leaving targeted individuals stranded in other countries, away from their seat of power.
 
 ### Insiders
 Insiders are individuals within a business. They may abuse their close access to systems, data, or information for personal gain, espionage, or sabotage. An insider can be an employee, third-party contractor, or partner who wants to get at organizational data or compromise key processes.
 
-Threat from within to *MegaTravel* may be an employee seeking to sabotage a system, commit fraud, or plant a logic bomb, motive being resentment towards the company. Attacks like these often include injecting a backdoor in backed services, allowing them to bypass authentification mechanism to alter data at will. Some may not be developers. Non-techincal staff, like customer service agents, may leak information themselves about celebrities, politicians, ex-partners; Or even manipule discount prices on promocodes for thier friends.
+Threat from within to *MegaTravel* may be an employee seeking to sabotage a system, commit fraud, or plant a logic bomb, motive being resentment towards the company. Attacks like these often include injecting a backdoor in backed services, allowing them to bypass authentification mechanism to alter data at will. Some may not even be developers or personel with technical background. Non-techincal staff, like customer service agents, may leak information themselves about celebrities, politicians, ex-partners; Or even manipule discount prices on promocodes for thier friends and acquaintances.
 
 ### “Script Kiddies”
  Typically inexperienced individuals who use existing hacking tools and techniques without a deep understanding of the underlying technology. They may engage in cyberattacks out of entertainment.
@@ -35,7 +35,7 @@ Usage of automated tools to scan *MegaTravels* public facing servers for common 
 ### Organized Crime Groups
  Criminal organizations may use cyberattacks as part of their broader criminal activities, such as drug trafficking or money laundering.
 
- These groups could use the MegaTravel booking system to "clean" illicit funds. By making thousands of high-value, refundable hotel and flight bookings using "dirty" money and then canceling them for a clean refund, they turn the platform into a massive laundering machine. May as well create "ghost" bookings that help move individuals or illicit goods across borders without triggering red flags in traditional law enforcement databases.
+ These groups could use the *MegaTravel* to "clean" illicit funds. By making thousands of high-value, refundable hotel and flight bookings using "dirty" money and then canceling them for a clean refund, they turn the platform into a massive laundering machine. May as well create "ghost" bookings that help move individuals or illicit goods across borders without triggering red flags in traditional law enforcement databases.
 
 ### Terrorist Groups
  Some terrorist organizations may use cyber-attacks as a means of furthering their goals, disrupting services, or causing fear. 
