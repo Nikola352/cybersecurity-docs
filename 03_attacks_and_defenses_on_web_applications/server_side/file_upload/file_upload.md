@@ -41,7 +41,7 @@ Even though this is one obvious danger and almost every site on the web implemen
 
 ### Result
 
-![alt text](image.png)
+![alt text](screenshots/image.png)
 
 # 🟢 2. Web shell upload via Content-Type restriction bypass
 
