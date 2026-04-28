@@ -34,49 +34,49 @@ I have solved multitude of SQL Injection tasks pressented on Burp Web Accademy. 
 *`SELECT * FROM products WHERE category = 'Gifts' AND released = 1`*
 
 To perform an attack, we will first look into a what we get when we search for `Gifts`.
-![alt text](image.png)
+![alt text](screenshots/image.png)
 
 We get three products, so lets take this as a baseline.
 We will boot up BurpSuite, and turn the interceptor on.
 
-![alt text](image-1.png) Now if we look at the request we notice that it queries the string `Gifts` to the database.
+![alt text](screenshots/image-1.png) Now if we look at the request we notice that it queries the string `Gifts` to the database.
 
 We can exploit this by changing `Gifts` to `'OR 1=1--`.
 First apostrophy terminates the name check, evaluationg to an empty string. We append `OR 1=1` to the query, which is always true, allowing us to pull everything from database.
 At last, `--` is a comment syntax, allowing to ignore `released =1` part of the query, as its being ignored by a comment.
 
-![alt text](image-2.png)
+![alt text](screenshots/image-2.png)
 
 
 ### 2. SQL injection attack, querying the database type and version on Oracle (Practitioner)
 
 To solve this lab, we must first find out the number of columns returned by a query, and than find out which columns contain text data.
-![alt text](image-3.png)
+![alt text](screenshots/image-3.png)
 This is what we get when we enter the lab.
 
 To find out the number of columns, we will perform a `UNION` attack. For a `UNION` query to work, query after `UNION` must match the number of columns returned, and every column must match the datatype of first queries column.
 
 We will turn intercept on in BurpSuite.
 
-![alt text](image-4.png)
+![alt text](screenshots/image-4.png)
 
 As before it queries the category name to the database. If its a not Oracle database we can modify the payload as `'UNION NULL--`, so we can see if it returns an error. But Oracle does require us to specify the table we are querying from. Oracle has a built in table called `dual`. Meaning payload will be `'UNION SELECT NULL from dual--` If it does return an error, that means query returns more than one column.
 
-![alt text](image-5.png)
+![alt text](screenshots/image-5.png)
 
 So lets try two columns now, meaning payload is `'UNION SELECT NULL,NULL from dual--`
 
-![alt text](image-6.png)
+![alt text](screenshots/image-6.png)
 
 That worked, so let check which columns contain text. Lets just make the payload `'UNION SELECT 'a',NULL from dual`
 
-![alt text](image-7.png) 
+![alt text](screenshots/image-7.png) 
 
 That worked, so no we can query to version to pull oracle sensitive data.
 
 To do this we will specify the payload as `'UNION SELECT BANNER, NULL FROM v$version--`
 
-![alt text](image-8.png)
+![alt text](screenshots/image-8.png)
 
 And we are seccessful.
 
@@ -90,9 +90,9 @@ As in previous lab, we would turn interceptor on, then we need to determine numb
 
 At last we specify payload as `'UNION SELECT @@version, NULL#`
 
-![alt text](image-14.png)
+![alt text](screenshots/image-14.png)
 
-![alt text](image-13.png)
+![alt text](screenshots/image-13.png)
 
 ### 4. SQL injection attack, listing the database contents on Oracle
 
@@ -106,17 +106,17 @@ We will repeat steps of finding out how many columns the query returns, and what
 
 Next we will try to list all tables in the database. Oracle has all_tables table containing table names. Therefore, we construct the payload as `'UNION SELECT TABLE_NAME,NULL FROM ALL_TABLES--`
 
-![alt text](image-9.png)
+![alt text](screenshots/image-9.png)
 
 Now we have alist of tables, and thru searching it, we see a table named `USERS_EMIHHS` (or something like that, since lab enviroments are user specific). Now we can query to other tables, but first we must determine column names in the that table. To do this, we can use all_tab_columns to see what table columns are contained. So payload is `'UNION SELECT COLUMN_NAME,NULL FROM ALL_TAB_COLUMNS WHERE TABLE_NAME='USERS_EMIHHS'--`
 
-![alt text](image-10.png)
+![alt text](screenshots/image-10.png)
 
 So now we can see username and password columns, so lets list users and their passwords. We consturct the payload as `'UNION SELECT 'un: ' || USERNAME_TTAUXK || '=== pw:' || PASSWORD_RSHHRI, NULL from USERS_EMIHHS--`
 
-![alt text](image-11.png) So lets try to log in as administrator
+![alt text](screenshots/image-11.png) So lets try to log in as administrator
 
-![alt text](image-12.png) Victory, altough this would not work if passwords are hashed on server side.
+![alt text](screenshots/image-12.png) Victory, altough this would not work if passwords are hashed on server side.
 
 ### 5. Blind SQL injection with conditional responses
 
@@ -132,36 +132,36 @@ For Blind SQL attacks, we do not have a clear report that something went wrong. 
 
 If we intercept a request, we can see the tracking cookie.
 
-![alt text](image-15.png)
+![alt text](screenshots/image-15.png)
 
 We could attempt to perform an injection on it. Lets first observe the behaviour of a the app, if we modify the payload to
 
-![alt text](image-16.png)
+![alt text](screenshots/image-16.png)
 
 Then we do get a "Welcome back" message.
 
-![alt text](image-17.png)
+![alt text](screenshots/image-17.png)
 
 But if we modify the payload to 
 
-![alt text](image-18.png) (`AND` here instead of `OR`, my fault)
+![alt text](screenshots/image-18.png) (`AND` here instead of `OR`, my fault)
 
 Then we can see that "Welcome back" dissapeared.
 
 If we assume there is a table `users`, we can construct a payload to check for it. In this case, we add `' and (select 'exists' from users limit 1)='exists`. Welcome message now appears. Therefore we can check if there is a user called `administrator`. With payload:
 
-![alt text](image-20.png)
+![alt text](screenshots/image-20.png)
 
 Then welcome back message is still present.
 
-![alt text](image-21.png)
+![alt text](screenshots/image-21.png)
 
 Good so far. Next step is to check for a password. We can construct payloads as `TrackingId=something' and (select 'e' from users where username='administrator' and length(password)>1)='e`, then iteratively move till we find out what is the password length. I will save you the hustle, lenght is 20. This is easily done by first intercepting a request, sending it to Burp Repeater, and then changeing the value.
 
 After we have the length, we can move to Intruder.
 We will intercept a request, and send it to intruder, then construct the payload as follows.
 
-![alt text](image-22.png)
+![alt text](screenshots/image-22.png)
 
 The substring function takes parameters:
 - the string its performing operation on
@@ -172,7 +172,7 @@ So in each round we will change the begin index to move thru the password.
 
 We can highlight the ending `a`, the click the `Add` button. Moving to payloads we can declare payloads that the `a` will change to in rounds, in ranges of a-z and 0-9.
 
-![alt text](image-23.png)
+![alt text](screenshots/image-23.png)
 
 We can begin by pressing `Start Attack`, and then in Setting-> Grep Match, clear all entries and just add `Welcome back`, so we can check which character got us the response.
 We repeat this 20 times getting all the password characters. in my case password was `ga2nxadp2aa1jha2p21z`

@@ -32,22 +32,22 @@ Manually testing for DOM-based XSS arising from URL parameters involves a simila
 
 When we enter a lab we are presented with a "blog" and we have listed posts.
 
-![alt text](image.png)
+![alt text](screenshots/image.png)
 
 If we click "View post", we can get more details on a specific post.
-![alt text](image-1.png)
+![alt text](screenshots/image-1.png)
 
 As well as the comment section with a section for use to leave a comment.
 
-![alt text](image-2.png)
+![alt text](screenshots/image-2.png)
 
 To execute the attack we will write `<sript>alert("anything")</script>` as the comment text.
 
-![alt text](image-3.png)
+![alt text](screenshots/image-3.png)
 
 We post a comment, and next time we load that post we get:
 
-![alt text](image-4.png)
+![alt text](screenshots/image-4.png)
 
 ### 2. DOM XSS in innerHTML sink using source location.search(Practitioner)
 
@@ -57,21 +57,21 @@ We post a comment, and next time we load that post we get:
 
 When we enter the lab we get a screen as follows.
 
-![alt text](image-5.png)
+![alt text](screenshots/image-5.png)
 
 If we type any string, and search it, by looking at the F12 menu and DOM, we can see that it appends the searched value to the elements, as childlren of a `<span>`.
 
-![alt text](image-6.png)
+![alt text](screenshots/image-6.png)
 
 If we write a `<img>` as a search term, it is also represented in the DOM.
 
-![alt text](image-7.png)
+![alt text](screenshots/image-7.png)
 
 To run any form of JavaScript, we can use a `onerror` function, provided in img tag. So our payload for search term is `<img src=1 onerror=alert(1)>`
 
 And if we hit `Search`, we get:
 
-![alt text](image-8.png)
+![alt text](screenshots/image-8.png)
 
 
 ### 3. DOM XSS in AngularJS expression with angle brackets and double quotes HTML-encoded (Practitioner)
@@ -86,7 +86,7 @@ We are presented a search box, and if we do search any string, we can notice tha
 
 Therefore, if we write something like `{{ $on.constructor('alert(1)')()}}`, it will be treated as a dynamic template, which will evalute the expression. So if we type that payload, we get:
 
-![alt text](image-9.png)
+![alt text](screenshots/image-9.png)
 
 ### 4. Stored DOM XSS (Practitioner)
 
@@ -94,23 +94,23 @@ Therefore, if we write something like `{{ $on.constructor('alert(1)')()}}`, it w
 
 Lab is once again, a blog forum. So lets try again to do `<script>alert("Hello")</script>` in comment text input.
 
-![alt text](image-10.png)
+![alt text](screenshots/image-10.png)
 
 We post a comment, but when we come back to the post, our JS doesnt execute, and the comment we posted is as follows:
 
-![alt text](image-11.png)
+![alt text](screenshots/image-11.png)
 
 So payload as a `<script>...</script>` did not work, so lets assume we cannot use enclosing tags. So lets instead use an `<img>`. Let the payload be `<img src=1 onerror=alert("Hello")>`.
 
-![alt text](image-12.png)
+![alt text](screenshots/image-12.png)
 
 So that didnt work, but if we look at F12, we can see this.
 
-![alt text](image-13.png)
+![alt text](screenshots/image-13.png)
 
 So anything that is a comment text, evalutes to a text of the `<p>` tag. So we somehow need to terminate the tag prematurely, so our payload gets embedded as an `<img>`. So we can construct a payload as `</p><img src=1 onerror=alert("Hello")><p>`. If we submit that as our comment, at last, we get:
 
-![alt text](image-14.png)
+![alt text](screenshots/image-14.png)
 
 ### 5. Stored XSS into onclick event with angle brackets and double quotes HTML-encoded and single quotes and backslash escaped
 
@@ -120,15 +120,15 @@ So anything that is a comment text, evalutes to a text of the `<p>` tag. So we s
 
 Using Interceptor and Burp Repeater, if we send a post comment request we can see that encodes our webiste as:
 
-![alt text](image-15.png)
+![alt text](screenshots/image-15.png)
 
 And now if we load the post, and send that request to Repeater, we can notice that our webisite is being sent to onclick event handler attribute of a comment.
 
-![alt text](image-16.png)
+![alt text](screenshots/image-16.png)
 
 So it is represented as a string, so we can try and escape it and manipulate JS to force this to be an expression. To do this, lets take a look what happens when we write `'a'-funcionCall*'b'`. This will not contatenate but instead it would be an expression (Arithemtic Coercion), and JS would resolve the `functionCall`. So to do this, we can construct payload as `https://www.any?&apos;-alert("Hello")-&apos;`. We would use any arithemtic operator except `+`, since we would not want to accidentally concatenate strings, rather to force JS to evaluate them as mathematical operation. If we now click on the comment author's name, it sends us to the website we have provided, we get:
 
-![alt text](image-17.png)
+![alt text](screenshots/image-17.png)
 
 
 
