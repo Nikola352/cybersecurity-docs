@@ -1,0 +1,10 @@
+sources:
+  - type: "input"
+    regex: "_GET|_POST|_REQUEST|_COOKIE|_SESSION"
+sinks:
+  - type: "exec"
+    regex: "eval|system|exec|shell_exec|passthru|popen|proc_open"
+  - type: "sql"
+    regex: "query|mysql_query|mysqli_query|pg_query|prepare|execute"
+  - type: "include"
+    regex: "include|require|include_once|require_once"
