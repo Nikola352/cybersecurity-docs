@@ -1,6 +1,6 @@
-# Remote Code Execution in TUDO
+# Login Bypass in TUDO
 
-Writeup for RCE in [TUDO](https://github.com/bmdyy/tudo) app using template injection. It assumes that the attacker can already log in as admin.
+Writeup of the security code review and analysis of the login bypass vulnerability in TUDO app.
 
 ## Setup
 
