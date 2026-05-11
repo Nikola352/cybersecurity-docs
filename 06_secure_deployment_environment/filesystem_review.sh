@@ -323,14 +323,21 @@ check_world_writable() {
         "/opt"
     )
 
-    local ignore_regex="^/proc/|^/sys/|^/dev/|/snap/|/var/lib/docker/|/home/.*/\.cache/|/home/.*/\.config/Code/User/History/"
-
     print_subsection "World Readable + Writable (Sensitive Locations)"
 
     for path in "${paths[@]}"; do
-        find "$path" -type f -perm -006 2>/dev/null | while read -r file; do
-
-            [[ "$file" =~ $ignore_regex ]] && continue
+        find "$path" \
+            \( \
+                -path "/proc" -o \
+                -path "/sys" -o \
+                -path "/dev" -o \
+                -path "*/snap/*" -o \
+                -path "/var/lib/docker/*" -o \
+                -path "*/.cache/*" -o \
+                -path "*/.config/Code/User/History/*" -o \
+                -path "*/node_modules/*" \
+            \) -prune -o \
+            -type f -perm -006 -print 2>/dev/null | while read -r file; do
 
             print_bad "$file is world-readable and world-writable (SENSITIVE LOCATION)"
         done
@@ -339,9 +346,18 @@ check_world_writable() {
     print_subsection "World Writable Files (Sensitive Locations)"
 
     for path in "${paths[@]}"; do
-        find "$path" -type f -perm -002 2>/dev/null | while read -r file; do
-
-            [[ "$file" =~ $ignore_regex ]] && continue
+        find "$path" \
+            \( \
+                -path "/proc" -o \
+                -path "/sys" -o \
+                -path "/dev" -o \
+                -path "*/snap/*" -o \
+                -path "/var/lib/docker/*" -o \
+                -path "*/.cache/*" -o \
+                -path "*/.config/Code/User/History/*" -o \
+                -path "*/node_modules/*" \
+            \) -prune -o \
+            -type f -perm -002 -print 2>/dev/null | while read -r file; do
 
             print_warning "$file is world-writable (SENSITIVE LOCATION)"
         done
