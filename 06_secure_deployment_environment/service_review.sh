@@ -192,6 +192,10 @@ else
   else
     ok "MaxAuthTries = $MAX_TRIES"
   fi
+
+  echo ""
+  info "After making any SSH config changes, restart the service:"
+  detail "systemctl restart sshd   (or: service ssh restart)"
 fi
 
 # ── 4. MYSQL CONFIGURATION ────────────────────────────────────────────────────
@@ -229,6 +233,10 @@ if [[ -f "$MYSQL_CNF" ]]; then
     warn "No bind-address found in $MYSQL_CNF — MySQL may listen on all interfaces"
     detail "Add 'bind-address = 127.0.0.1' under [mysqld] in $MYSQL_CNF"
   fi
+
+  echo ""
+  info "After making any MySQL config changes, restart the service:"
+  detail "systemctl restart mysql   (or: service mysql restart)"
 else
   info "MySQL config file not found — MySQL may not be installed or uses different path"
 fi
@@ -1053,3 +1061,4 @@ echo -e "  ${BOLD}Suggested next steps:${RESET}"
 echo -e "  ${BLUE}•${RESET} Restart SSH after changes:   ${CYAN}systemctl restart sshd${RESET}"
 echo -e "  ${BLUE}•${RESET} Restart MySQL after changes: ${CYAN}systemctl restart mysql${RESET}"
 echo -e "  ${BLUE}•${RESET} Check GTFOBins for SUID abuse: ${CYAN}https://gtfobins.github.io${RESET}"
+echo -e "  ${BLUE}•${RESET} Run full LinPEAS for deeper audit: ${CYAN}https://github.com/carlospolop/PEASS-ng${RESET}\n"
