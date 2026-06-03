@@ -5046,7 +5046,7 @@
         "diagramType": "STRIDE",
         "placeholder": "Login process DFD decomposition",
         "thumbnail": "./public/content/images/thumbnail.stride.jpg",
-        "version": "2.6.0",
+        "version": "2.6.2",
         "cells": [
           {
             "position": {
@@ -6187,13 +6187,6 @@
                 "informationDisclosure": 1,
                 "denialOfService": 1
               }
-            },
-            "tools": {
-              "items": [
-                "boundary",
-                "button-remove"
-              ],
-              "name": null
             }
           },
           {
@@ -6803,16 +6796,6 @@
               "cell": "proc-authenticate",
               "port": "auth-l"
             },
-            "tools": {
-              "items": [
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead"
-              ],
-              "name": null
-            },
             "vertices": [
               {
                 "x": 360,
@@ -6832,5 +6815,5 @@
     "reviewer": "",
     "threatTop": 47
   },
-  "version": "2.6.0"
+  "version": "2.6.2"
 }
