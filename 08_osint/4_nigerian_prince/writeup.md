@@ -55,6 +55,10 @@ With the challenge come to `txt` files:
 
 Email itself looks wierd, i was not sure if it was two seperate emails, or was it one and they made a mistake. Context of words is strange, like the writere just decided to drop everything from their mind into a single email. Also, spacing is wierd, same as punctuation. Who seperates words and interpunction signs like that? Not to mention that some phrases repeat, like "Thank you for your serious consideration of our offer .". 
 
+Regardless, i decided to check these `Senate bill 1622 
+    , Title 8 ; Section 308` and `Senate bill 1916 , Title 1 ; Section 
+305` (bad idea). Let me to nothing, but i was thinking there might a web page that was looking somewhat fabricated, giving me a lead.
+
 Since it looked purposefully made this way, i decided to send it to some known cyphers. Base64, Ashtab and Ceaser returned nothing, so this must me something more advanced.
 
 Thru some reasearch i learnt that you are able to hide messages inside the email thru spam words like these. So i visited the website called `spammimic.com` and pasted the email text.
