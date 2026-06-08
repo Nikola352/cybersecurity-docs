@@ -31,7 +31,7 @@ A google search yielded the following results:
 
 ![alt text](screenshots/image2.png)
 
-Yeah that doesnt seem like anything serious.Besides that, I checkouted out some posts, and I did not find anything resembling the flag. Looks like its genuinely some guy's X account.
+Yeah that doesnt seem like anything serious. I checkouted out some posts, and I did not find anything resembling the flag. Looks like its genuinely some guy's X account.
 
 I switched to Bing to search:
 
