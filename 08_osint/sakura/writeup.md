@@ -24,7 +24,7 @@ We are provided with a [link](https://tryhackme.com/room/sakura) to an image som
 
 Attacker left us a nice image telling us we have been hacked. On the first glance, there is a binary code embedded in the image, as well `aria-label` tag. When decoded into text, it reads: `Image is worth a 1000 words, but metadata is worth far more` (what a waste of time...). Checking the metadata, our pepetrator was a bit hasty, living a full path to an image on their computer. It reads `/home/SakuraSnowAngelAiko/Desktop/pwnedletter.png`.
 
-So our cyber criminal goes by the artistic name `SakuraSnowAngleAiko`.
+So our cyber criminal goes by the artistic name `SakuraSnowAngelAiko`.
 
 ## 2. *Reconnaissance*
 
@@ -119,3 +119,61 @@ Address of the wallet is `0xa102397dbeeBeFD8cD2F73A89122fCdB53abB6ef`.
 Thru filtering the transactions by date, specifically for the day 23rd of January, 2021, we can see that mining pool used was `Ethermine`.
 
 Scrolling thru transactions we can see that miss attacker made some transactions `Tether` crypto currency, mostly leading to something resembling gambling webistes.
+
+
+## 4. *Taunt*
+
+```
+Just as we thought, the cybercriminal is fully aware that we are gathering information about them after their attack. They were even so brazen as to message the  Dojo on Twitter and taunt us for our efforts. The Twitter account which they used appears to use a different username than what we were previously tracking, maybe there is some additional information we can locate to get an idea of where they are heading to next?
+```
+We've taken a screenshot of the message sent to us by the attacker, you can view it in your browser [here](https://raw.githubusercontent.com/OsintDojo/public/main/taunt.png).
+
+The task asks us to find the alternate twitter account of the attacker. A quick google search by the old username reveals the current account with the username: `SakuraLoverAiko`.
+
+![alt](screenshots/image5.png)
+![alt](screenshots/image6.png)
+
+The latest post hints that they might have pasted their wifi passwords on a website called DeepPaste on the dark web, under the key of `b2b37b3c106eb3f86e2340a3050968e2`. Spinning up a TOR window in the Brave browser and doing a quick search, lands us on that website and we can see the contents that they have pasted.
+
+![alt](screenshots/image7.png)
+
+We can see that their home wifi SSID is `DK1F-G`.
+
+There exist a service called [wigle](https://wigle.net/) that has a large database of Wifi device information. There, we can search by SSID to find the BSSID.
+
+![alt](screenshots/image8.png)
+
+We find that the BSSID is `84:AF:EC:34:FC:F8`.
+
+
+## 5. *Homebound*
+
+```
+Based on their tweets, it appears our cybercriminal is indeed heading home as they claimed. Their Twitter account seems to have plenty of photos which should allow us to piece together their route back home. If we follow the trail of breadcrumbs they left behind, we should be able to track their movements from one location to the next back all the way to their final destination. Once we can identify their final stops, we can identify which law enforcement organization we should forward our findings to.
+```
+
+We explore the pictures they posted on Twitter in chronological order.
+
+![alt](screenshots/image8.png)
+
+The first photo shows a beautiful cherry blossom, which indicates that this might be somewhere in Japan, because that is what it is famous for. However, upon closer inspection of the photo, while looking for more characteristic landmarks in order to discover the exact location, we observe a characteristic monument in the background. 
+
+A quick google search reveals that this is the Washington Monument in Washington D.C. From there, we find that the closest airport to that monument is Ronald Reagan Washington National Airport. Its international airport code is `DCA`.
+
+![alt](screenshots/image9.png)
+![alt](screenshots/image10.png)
+![alt](screenshots/image11.png)
+
+The second photo is from an airport launge. By reading the signs we can see that it states "First Class Launge, Sacura Launge", by the Japan Airlines. Again, a quick google search lands us on the Japan Airlines website that showcases a Sakura launge at the Tokyo International Airport (Haneda). Its international airport code is `HND`.
+
+![alt](screenshots/image12.png)
+
+The next picture from the twitter account shows an airplane view or a satelite image over a lake.
+
+![alt](screenshots/image13.png)
+
+Since we now that the flight is from Tokyo, we try to find it on Google Maps. We quickly find out that they are flying over `Lake Inawashiro`.
+
+![alt](screenshots/image14.png)
+
+The final piece of the puzzle is finding out what city they call home. We now that they are flying from Tokyo over Lake Inawashiro, so we have a rough geographical sense that it is in the north of Japan. If we recall their paste from the DeepPaste website on the dark web, there was a wifi entry with SSID `HIROSAKI_FREE_WI-FI`. This hints that the attacker frequently connects to a public wifi in their home city. By checking on the map once again, we can clearly find the city of `Hirasaki`.
